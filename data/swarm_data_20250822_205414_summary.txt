@@ -1,0 +1,88 @@
+SWARM BEHAVIOR DATA SUMMARY
+==================================================
+
+CSV File: swarm_data_20250822_205414.csv
+Total data points: 1890
+Number of robots: 7
+Data points per robot: ~270
+
+ROBOT STATISTICS:
+------------------------------
+Robot 2 (swarm_bot_2):
+  Data points: 270
+  Average speed: 0.0188 m/s
+  Max speed: 0.0518 m/s
+  Min speed: 0.0014 m/s
+  Estimated total distance: 0.51 m
+  X range: 0.96 to 1.25 m
+  Y range: 1.13 to 1.53 m
+
+Robot 3 (swarm_bot_3):
+  Data points: 270
+  Average speed: 0.0193 m/s
+  Max speed: 0.0542 m/s
+  Min speed: 0.0016 m/s
+  Estimated total distance: 0.52 m
+  X range: -0.42 to -0.28 m
+  Y range: 1.42 to 1.91 m
+
+Robot 4 (swarm_bot_4):
+  Data points: 270
+  Average speed: 0.0193 m/s
+  Max speed: 0.0557 m/s
+  Min speed: 0.0010 m/s
+  Estimated total distance: 0.52 m
+  X range: -1.76 to -1.29 m
+  Y range: 0.65 to 0.86 m
+
+Robot 6 (swarm_bot_6):
+  Data points: 270
+  Average speed: 0.0195 m/s
+  Max speed: 0.0547 m/s
+  Min speed: 0.0017 m/s
+  Estimated total distance: 0.53 m
+  X range: -0.42 to -0.28 m
+  Y range: -1.91 to -1.41 m
+
+Robot 7 (swarm_bot_7):
+  Data points: 270
+  Average speed: 0.0185 m/s
+  Max speed: 0.0507 m/s
+  Min speed: 0.0012 m/s
+  Estimated total distance: 0.50 m
+  X range: 0.96 to 1.25 m
+  Y range: -1.54 to -1.15 m
+
+Robot 1 (swarm_bot_1):
+  Data points: 270
+  Average speed: 0.0181 m/s
+  Max speed: 0.0501 m/s
+  Min speed: 0.0012 m/s
+  Estimated total distance: 0.49 m
+  X range: 1.52 to 2.00 m
+  Y range: -0.01 to -0.00 m
+
+Robot 5 (swarm_bot_5):
+  Data points: 270
+  Average speed: 0.0196 m/s
+  Max speed: 0.0566 m/s
+  Min speed: 0.0014 m/s
+  Estimated total distance: 0.53 m
+  X range: -1.76 to -1.28 m
+  Y range: -0.84 to -0.63 m
+
+DATA ANALYSIS INSTRUCTIONS:
+------------------------------
+You can analyze the CSV data using:
+1. Excel/LibreOffice Calc
+2. Python with matplotlib:
+   import csv, matplotlib.pyplot as plt
+3. Any data analysis tool that supports CSV
+
+CSV COLUMNS:
+- timestamp: Time since start (seconds)
+- robot_id: Robot identifier (0-4)
+- robot_name: Robot name (swarm_bot_1 to swarm_bot_5)
+- pos_x, pos_y: Position coordinates (meters)
+- vel_x, vel_y: Velocity components (m/s)
+- speed: Total speed magnitude (m/s)

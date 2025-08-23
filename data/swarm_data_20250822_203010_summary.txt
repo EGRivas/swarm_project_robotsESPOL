@@ -1,0 +1,70 @@
+SWARM BEHAVIOR DATA SUMMARY
+==================================================
+
+CSV File: swarm_data_20250822_203010.csv
+Total data points: 1780
+Number of robots: 5
+Data points per robot: ~356
+
+ROBOT STATISTICS:
+------------------------------
+Robot 1 (swarm_bot_1):
+  Data points: 356
+  Average speed: 0.0262 m/s
+  Max speed: 0.0411 m/s
+  Min speed: 0.0042 m/s
+  Estimated total distance: 0.93 m
+  X range: 0.81 to 1.60 m
+  Y range: -0.38 to 0.08 m
+
+Robot 2 (swarm_bot_2):
+  Data points: 356
+  Average speed: 0.0123 m/s
+  Max speed: 0.0279 m/s
+  Min speed: 0.0028 m/s
+  Estimated total distance: 0.44 m
+  X range: 0.88 to 1.01 m
+  Y range: 1.00 to 1.40 m
+
+Robot 3 (swarm_bot_3):
+  Data points: 356
+  Average speed: 0.0039 m/s
+  Max speed: 0.0183 m/s
+  Min speed: 0.0005 m/s
+  Estimated total distance: 0.14 m
+  X range: -0.37 to -0.34 m
+  Y range: 1.59 to 1.73 m
+
+Robot 4 (swarm_bot_4):
+  Data points: 356
+  Average speed: 0.0123 m/s
+  Max speed: 0.0285 m/s
+  Min speed: 0.0028 m/s
+  Estimated total distance: 0.44 m
+  X range: -1.48 to -1.18 m
+  Y range: 0.53 to 0.83 m
+
+Robot 5 (swarm_bot_5):
+  Data points: 356
+  Average speed: 0.0261 m/s
+  Max speed: 0.0419 m/s
+  Min speed: 0.0041 m/s
+  Estimated total distance: 0.93 m
+  X range: -1.44 to -0.54 m
+  Y range: -0.71 to -0.60 m
+
+DATA ANALYSIS INSTRUCTIONS:
+------------------------------
+You can analyze the CSV data using:
+1. Excel/LibreOffice Calc
+2. Python with matplotlib:
+   import csv, matplotlib.pyplot as plt
+3. Any data analysis tool that supports CSV
+
+CSV COLUMNS:
+- timestamp: Time since start (seconds)
+- robot_id: Robot identifier (0-4)
+- robot_name: Robot name (swarm_bot_1 to swarm_bot_5)
+- pos_x, pos_y: Position coordinates (meters)
+- vel_x, vel_y: Velocity components (m/s)
+- speed: Total speed magnitude (m/s)
