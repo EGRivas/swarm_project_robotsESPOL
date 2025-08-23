@@ -229,7 +229,7 @@ Features:
 ros2 run swarm_control swarm_flocking_without_collision --ros-args -p robot_id:=0
 ```
 
-**Note** *: You must set the amount of robots you want to simulate in both controllers, also in the launch files (`~/swarm_bringup/spawn_robots.launch.py/` and `~/swarm_bringup/swarm_behavior.launch.py/`). Even you *
+**Note** *: You must set the amount of robots you want to simulate in both controllers, also in the launch files (`~/swarm_bringup/spawn_robots.launch.py/`, `~/swarm_bringup/swarm_behavior.launch.py/`, `~/swarm_bringup/data_logger.launch.py/`). you even have to change them in the corresponding node in the folder `~/swarm_control/`*
 
 ### Launch File Parameters
 #### Robot Naming Convention
