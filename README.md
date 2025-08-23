@@ -138,6 +138,7 @@ ros2 launch swarm_bringup bringup_gz.launch.py
 
 If the test runs successfully, your installation is complete.
 
+
 ## Usage
 
 The swarm simulation consists of multiple launch files that must be executed in sequence. There are two main operational modes: **production swarm simulation** and **single robot testing**.
@@ -297,4 +298,173 @@ When running correctly, you should observe:
 - CPU Usage: Monitor system resources during simulation
 - Gazebo Warnings: NodeShared::RecvSrvRequest() error warnings are normal and non-critical
 - Data Rate: ~50 data points per second per robot
+
+## Data Collection
+
+The simulation automatically generates comprehensive datasets for swarm behavior analysis. All data is stored in `~/swarm_project/data/` with timestamped filenames.
+
+### Data Files Generated
+
+#### Raw Data (CSV Format)
+**File**: `swarm_data_YYYYMMDD_HHMMSS.csv`
+
+Contains real-time measurements with columns:
+- `timestamp`: Simulation time (seconds)
+- `robot_id`: Robot identifier (0-4)  
+- `robot_name`: Robot namespace (`swarm_bot_1` to `swarm_bot_5`)
+- `pos_x`, `pos_y`: Position coordinates (meters)
+- `vel_x`, `vel_y`: Velocity components (m/s)
+- `speed`: Total velocity magnitude (m/s)
+
+#### Statistical Summary
+**File**: `swarm_data_YYYYMMDD_HHMMSS_summary.txt`
+
+Includes:
+- Per-robot speed statistics (mean, max, min, std deviation)
+- Estimated total distance traveled
+- Position ranges and movement boundaries
+- Inter-robot distance distributions
+- Data collection metadata
+
+### Data Analysis Examples
+
+#### Using Python (Basic)
+```python
+import csv
+import matplotlib.pyplot as plt
+
+# Load data
+timestamps, speeds = [], []
+with open('swarm_data_20250819_143022.csv', 'r') as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        if row['robot_id'] == '0':  # Analyze Robot 1
+            timestamps.append(float(row['timestamp']))
+            speeds.append(float(row['speed']))
+
+# Plot speed over time
+plt.plot(timestamps, speeds)
+plt.xlabel('Time (s)')
+plt.ylabel('Speed (m/s)')
+plt.title('Robot 1 Speed Profile')
+plt.show()
+```
+### Using Excel/LibreOffice Calc
+1. Open the CSV file
+2. Create pivot tables grouping by robot_id
+3. Generate charts for velocity trends
+4. Analyze swarm cohesion patterns
+
+#### Typical Data Metrics
+For a 5-robot and 300-second simulation:
+- Data Points: ~15,000 total (3,000 per robot)
+- File Size: ~1.2 MB CSV
+- Sampling Rate: ~10 Hz per robot
+- Velocity Range: 0.0 - 0.5 m/s (typical aquatic speeds)
+- Position Range: -6 to +6 meters (bounded by world)
+
+## Troubleshooting
+Common Issues
+### ROS2 Jazzy Not Found
+```bash
+# Verify ROS2 installation
+ros2 --version
+# Expected: ros2 doctor version 0.10.5
+
+# If not found, reinstall ROS2 Jazzy
+sudo apt update
+sudo apt install ros-jazzy-desktop-full
+```
+
+### Gazebo Harmonic Version Conflicts
+```bash
+# Check Gazebo version
+gz sim --version
+# Expected: Gazebo Sim, version 8.x.x
+
+# Remove conflicting versions
+sudo apt remove gz-garden gz-fortress
+sudo apt install gz-harmonic
+```
+
+### Gazebo Launch Failures
+**Problem**: gz sim command not found
+```bash
+# Solution: Add Gazebo to PATH
+echo "export PATH=/opt/ros/jazzy/opt/gz_sim_vendor/bin:$PATH" >> ~/.bashrc
+source ~/.bashrc
+```
+
+**Problem**: World file not loading
+```bash
+# Check world file exists
+ls ~/swarm_project/install/swarm_worlds/share/swarm_worlds/worlds/
+# Should show: flat_ocean.sdf
+
+# Verify package installation
+colcon build --packages-select swarm_worlds
+```
+
+### Robot Spawning Issues
+**Problem**: Robots not appearing in Gazebo
+```bash
+# Check if Gazebo service is running
+gz service --list | grep create
+# Expected: /world/flat_ocean/create
+
+# Verify robot description
+ros2 param get /swarm_bot_1/robot_state_publisher robot_description
+```
+
+**Problem**: "Host unreachable" errors
+- Cause: Normal Gazebo service saturation with multiple robots
+- Impact: Non-critical warnings, simulation continues normally
+- Solution: Reduce update frequency or ignore warnings
+
+### Flocking Behavior Issues
+**Problem**: Robots not flocking, moving individually
+```bash
+# Check inter-robot communication
+ros2 topic list | grep odom
+# Should show: /swarm/swarm_bot_X/odom for each robot
+
+# Verify controllers are running
+ros2 node list | grep flocking
+# Expected: swarm_bot_X_flocking nodes
+```
+
+### Data Collection Issues
+**Problem**: No data files generated
+```bash
+# Check data directory exists
+ls ~/swarm_project/data/
+# Create if missing:
+mkdir -p ~/swarm_project/data/
+
+# Verify data logger is running
+ros2 node list | grep data_logger
+```
+
+**Note** *: We had a lot of issues with sensor plugins, mesh models (.STL) and other ROS2 and Gazebo Harmonic packages and resources
+We changed to a simplified URDF model and use a laser scan sensor plugin that doesn't work pretty well
+If you know how to fix it, please contact with us*
+
+
+### Getting help
+If problems persist:
+
+1. Check logs: ~/.ros/log/ for detailed error messages
+2. Verify versions: Ensure ROS2 Jazzy + Gazebo Harmonic compatibility
+3. Clean rebuild: Remove build/ and install/ directories, rebuild
+4. System resources: Ensure sufficient RAM (8GB+) and CPU capacity
+
+For additional support, include in your issue report:
+
+- Operating system version (lsb_release -a)
+- ROS2 version (ros2 --version)
+- Gazebo version (gz sim --version)
+- Error logs from ~/.ros/log/
+
+***Thank you and enjoy your simulation from our dedicated team!***
+**Mobile and Serial Robots - I PAO 2025**
 
