@@ -14,22 +14,22 @@ A comprehensive swarm robotics simulation implementing flocking behavior for aqu
 
 ## Features
 
-- **Swarm Flocking Behavior**: Implementation of separation, alignment, and cohesion rules
-- **Aquatic Surface Navigation**: Specialized for water surface robot simulation
-- **Real-time Data Logging**: CSV export of velocities, positions, and trajectories
-- **Multi-robot Coordination**: Support for a maximum of 7 robots in swarm formation (maximum stable work at 5 robots)
-- **Gazebo Harmonic Integration**: Physics simulation with Gazebo Harmonic
-- **Obstacle Avoidance**: Laser-based collision avoidance (optional)
-- **URDF Visualization**: RViz integration with joint state publisher
+- **Swarm Flocking Behavior**: Implementation of separation, alignment, and cohesion rules.
+- **Aquatic Surface Navigation**: Specialized for water surface robot simulation.
+- **Real-time Data Logging**: CSV export of velocities, positions, and trajectories.
+- **Multi-robot Coordination**: Support for a maximum of 7 robots in swarm formation (maximum stable work at 5 robots).
+- **Gazebo Harmonic Integration**: Physics simulation with Gazebo Harmonic.
+- **Obstacle Avoidance**: Laser-based collision avoidance (optional).
+- **URDF Visualization**: RViz integration with joint state publisher.
 
 ## Prerequisites
 
 Before installing, ensure you have:
 
-- **Ubuntu 24.04 LTS (Noble Nobis)**
-- **ROS2 Jazzy Jalisco**
-- **Gazebo Harmonic**
-- **Python 3.12+**
+- **Ubuntu 24.04 LTS (Noble Nobis).**
+- **ROS2 Jazzy Jalisco.**
+- **Gazebo Harmonic.**
+- **Python 3.12+.**
 
 ### System Dependencies
 
@@ -107,10 +107,10 @@ ros2 launch --help
 ## Project Structure
 The project consists of 4 main packages:
 
-- **swarm_robot_description:** Robot URDF/XACRO definitions and meshes
-- **swarm_worlds:** Gazebo world files and environments
-- **swarm_control:** Flocking algorithms and robot controllers
-- **swarm_bringup:** Launch files for simulation orchestration
+- **swarm_robot_description:** Robot URDF/XACRO definitions and meshes.
+- **swarm_worlds:** Gazebo world files and environments.
+- **swarm_control:** Flocking algorithms and robot controllers.
+- **swarm_bringup:** Launch files for simulation orchestration.
 
 ### Build Verification
 After installation, verify each package builds correctly:
@@ -153,9 +153,9 @@ For full swarm behavior with 5 robots, execute these launch files in **separate 
 ros2 launch swarm_bringup gazebo_world.launch.py
 ```
 This launches:
-- Gazebo Harmonic simulator
-- Flat ocean world environment
-- Clock synchronization bridge
+- Gazebo Harmonic simulator.
+- Flat ocean world environment.
+- Clock synchronization bridge.
 
 #### Step 2: Spawn Robot Swarm
 ```bash
@@ -163,9 +163,9 @@ This launches:
 ros2 launch swarm_bringup spawn_robots.launch.py
 ```
 This spawns:
-- 5 aquatic surface robots (swarm_bot_1 to swarm_bot_5)
-- Robot state publishers for each robot
-- Communication bridges between ROS2 and Gazebo
+- 5 aquatic surface robots (swarm_bot_1 to swarm_bot_5).
+- Robot state publishers for each robot.
+- Communication bridges between ROS2 and Gazebo.
 
 #### Step 3: Activate Swarm Behavior
 ```bash
@@ -173,9 +173,9 @@ This spawns:
 ros2 launch swarm_bringup swarm_behavior.launch.py
 ```
 This activates:
-- Flocking behavior controllers for all robots
-- Inter-robot communication for swarm coordination
-- Autonomous navigation with collision avoidance
+- Flocking behavior controllers for all robots.
+- Inter-robot communication for swarm coordination.
+- Autonomous navigation with collision avoidance.
 
 #### Step 4: Data Collection (Optional)
 ```bash
@@ -183,9 +183,9 @@ This activates:
 ros2 launch swarm_bringup data_logger.launch.py
 ```
 This enables:
-- Real-time data logging to CSV files
-- Velocity and position tracking
-- Automatic data summary generation
+- Real-time data logging to CSV files.
+- Velocity and position tracking.
+- Automatic data summary generation.
 
 ### Single Robot Testing Mode
 For development and testing purposes, use the simplified single robot launcher:
@@ -194,9 +194,9 @@ For development and testing purposes, use the simplified single robot launcher:
 ros2 launch swarm_bringup bringup_gz.launch.py
 ```
 This test mode:
-- Launches Gazebo with one robot
-- Applies smooth aquatic movement controller
-- Useful for debugging robot behavior
+- Launches Gazebo with one robot.
+- Applies smooth aquatic movement controller.
+- Useful for debugging robot behavior.
 
 ### Controller Types
 The project includes two main swarm controllers:
@@ -204,10 +204,10 @@ The project includes two main swarm controllers:
 **File**: swarm_control/swarm_flocking.py
 
 Features:
-- Complete flocking behavior (separation, alignment, cohesion)
-- Laser-based obstacle avoidance
-- Inter-robot communication
-- Dynamic formation control
+- Complete flocking behavior (separation, alignment, cohesion).
+- Laser-based obstacle avoidance.
+- Inter-robot communication.
+- Dynamic formation control.
 
 **Use case**: Production swarm simulation with obstacle avoidance
 ```bash
@@ -218,10 +218,10 @@ ros2 run swarm_control swarm_flocking --ros-args -p robot_id:=0
 #### 2. Collision-Free Controller (swarm_flocking_without_collision)
 **File**: swarm_control/swarm_flocking_without_collision.py
 Features:
-- Pure flocking behavior without collision detection
-- Lighter computational load
-- Smoother movement patterns
-- Simplified inter-robot dynamics
+- Pure flocking behavior without collision detection.
+- Lighter computational load.
+- Smoother movement patterns.
+- Simplified inter-robot dynamics.
 
 **Use case**: Open environment simulation without obstacles
 ```bash
@@ -229,13 +229,13 @@ Features:
 ros2 run swarm_control swarm_flocking_without_collision --ros-args -p robot_id:=0
 ```
 
-**Note** *: You must set the amount of robots you want to simulate in both controllers, also in the launch files (spawn_robots and swarm_behavior)*
+**Note** *: You must set the amount of robots you want to simulate in both controllers, also in the launch files (`~/swarm_bringup/spawn_robots.launch.py/` and `~/swarm_bringup/swarm_behavior.launch.py/`). Even you *
 
 ### Launch File Parameters
 #### Robot Naming Convention
-- Robots are named: swarm_bot_1, swarm_bot_2, ..., swarm_bot_N
-- Namespaces: /swarm/swarm_bot_X/
-- Topics follow pattern: /swarm/swarm_bot_X/cmd_vel, /swarm/swarm_bot_X/odom
+- Robots are named: `swarm_bot_1`, `swarm_bot_2`, `...`, `swarm_bot_N`
+- Namespaces: `/swarm/swarm_bot_X/`
+- Topics follow pattern: `/swarm/swarm_bot_X/cmd_vel`, `/swarm/swarm_bot_X/odom`
 
 ### Monitoring Swarm Behavior
 #### Real-time Monitoring
@@ -278,26 +278,26 @@ rviz2
 ### Stopping the Simulation
 To properly stop the simulation:
 
-1. Ctrl+C in Terminal 4 (data logger) - Generates final data summary
-2. Ctrl+C in Terminal 3 (swarm behavior)
-3. Ctrl+C in Terminal 2 (spawn robots)
-4. Ctrl+C in Terminal 1 (gazebo world) - Closes Gazebo
+1. Ctrl+C in Terminal 4 (data logger) - Generates final data summary.
+2. Ctrl+C in Terminal 3 (swarm behavior).
+3. Ctrl+C in Terminal 2 (spawn robots).
+4. Ctrl+C in Terminal 1 (gazebo world) - Closes Gazebo.
 
 
 ### Expected Behavior
 When running correctly, you should observe:
 
-- Separation: Robots maintain minimum distance from neighbors
-- Alignment: Robots align their velocities with nearby robots
-- Cohesion: Robots are attracted to the center of local neighbors
-- Formation: Emergent flocking patterns and group coordination
-- Smooth Navigation: Aquatic-optimized movement dynamics
+- Separation: Robots maintain minimum distance from neighbors.
+- Alignment: Robots align their velocities with nearby robots.
+- Cohesion: Robots are attracted to the center of local neighbors.
+- Formation: Emergent flocking patterns and group coordination.
+- Smooth Navigation: Aquatic-optimized movement dynamics.
 
 ### Performance Notes
-- Recommended: 5-7 robots for optimal performance
-- CPU Usage: Monitor system resources during simulation
-- Gazebo Warnings: NodeShared::RecvSrvRequest() error warnings are normal and non-critical
-- Data Rate: ~50 data points per second per robot
+- Recommended: 5-7 robots for optimal performance.
+- CPU Usage: Monitor system resources during simulation.
+- Gazebo Warnings: NodeShared::RecvSrvRequest() error warnings are normal and non-critical.
+- Data Rate: ~50 data points per second per robot.
 
 ## Data Collection
 
@@ -310,7 +310,7 @@ The simulation automatically generates comprehensive datasets for swarm behavior
 
 Contains real-time measurements with columns:
 - `timestamp`: Simulation time (seconds)
-- `robot_id`: Robot identifier (0-4)  
+- `robot_id`: Robot identifier (0-4 or more) you can set the amount of robots you want 
 - `robot_name`: Robot namespace (`swarm_bot_1` to `swarm_bot_5`)
 - `pos_x`, `pos_y`: Position coordinates (meters)
 - `vel_x`, `vel_y`: Velocity components (m/s)
@@ -320,11 +320,11 @@ Contains real-time measurements with columns:
 **File**: `swarm_data_YYYYMMDD_HHMMSS_summary.txt`
 
 Includes:
-- Per-robot speed statistics (mean, max, min, std deviation)
-- Estimated total distance traveled
-- Position ranges and movement boundaries
-- Inter-robot distance distributions
-- Data collection metadata
+- Per-robot speed statistics (mean, max, min).
+- Estimated total distance traveled.
+- Position ranges and movement boundaries.
+- Inter-robot distance distributions.
+- Data collection metadata.
 
 ### Data Analysis Examples
 
@@ -350,18 +350,18 @@ plt.title('Robot 1 Speed Profile')
 plt.show()
 ```
 ### Using Excel/LibreOffice Calc
-1. Open the CSV file
-2. Create pivot tables grouping by robot_id
-3. Generate charts for velocity trends
-4. Analyze swarm cohesion patterns
+1. Open the CSV file.
+2. Create pivot tables grouping by robot_id.
+3. Generate charts for velocity trends.
+4. Analyze swarm cohesion patterns.
 
 #### Typical Data Metrics
 For a 5-robot and 300-second simulation:
-- Data Points: ~15,000 total (3,000 per robot)
-- File Size: ~1.2 MB CSV
-- Sampling Rate: ~10 Hz per robot
-- Velocity Range: 0.0 - 0.5 m/s (typical aquatic speeds)
-- Position Range: -6 to +6 meters (bounded by world)
+- Data Points: ~15,000 total (3,000 per robot).
+- File Size: ~1.2 MB CSV.
+- Sampling Rate: ~10 Hz per robot.
+- Velocity Range: 0.0 - 0.5 m/s (typical aquatic speeds).
+- Position Range: -6 to +6 meters (bounded by world).
 
 ## Troubleshooting
 Common Issues
@@ -417,9 +417,9 @@ ros2 param get /swarm_bot_1/robot_state_publisher robot_description
 ```
 
 **Problem**: "Host unreachable" errors
-- Cause: Normal Gazebo service saturation with multiple robots
-- Impact: Non-critical warnings, simulation continues normally
-- Solution: Reduce update frequency or ignore warnings
+- Cause: Normal Gazebo service saturation with multiple robots.
+- Impact: Non-critical warnings, simulation continues normally.
+- Solution: Reduce update frequency or ignore warnings.
 
 ### Flocking Behavior Issues
 **Problem**: Robots not flocking, moving individually
@@ -445,18 +445,18 @@ mkdir -p ~/swarm_project/data/
 ros2 node list | grep data_logger
 ```
 
-**Note** *: We had a lot of issues with sensor plugins, mesh models (.STL) and other ROS2 and Gazebo Harmonic packages and resources
-We changed to a simplified URDF model and use a laser scan sensor plugin that doesn't work pretty well
-If you know how to fix it, please contact with us*
+**Note** *: We had a lot of issues with sensor plugins, mesh models (.STL) and other ROS2 and Gazebo Harmonic packages and resources.
+We changed to a simplified URDF model and use a laser scan sensor plugin that doesn't work pretty well.
+If you know how to fix it, please contact with us.*
 
 
 ### Getting help
 If problems persist:
 
-1. Check logs: ~/.ros/log/ for detailed error messages
-2. Verify versions: Ensure ROS2 Jazzy + Gazebo Harmonic compatibility
-3. Clean rebuild: Remove build/ and install/ directories, rebuild
-4. System resources: Ensure sufficient RAM (8GB+) and CPU capacity
+1. Check logs: ~/.ros/log/ for detailed error messages.
+2. Verify versions: Ensure ROS2 Jazzy + Gazebo Harmonic compatibility.
+3. Clean rebuild: Remove build/ and install/ directories, rebuild.
+4. System resources: Ensure sufficient RAM (8GB+) and CPU capacity.
 
 For additional support, include in your issue report:
 
@@ -465,6 +465,5 @@ For additional support, include in your issue report:
 - Gazebo version (gz sim --version)
 - Error logs from ~/.ros/log/
 
+###Mobile and Serial Robots - I PAO 2025**
 ***Thank you and enjoy your simulation from our dedicated team!***
-**Mobile and Serial Robots - I PAO 2025**
-
