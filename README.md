@@ -465,5 +465,5 @@ For additional support, include in your issue report:
 - Gazebo version (gz sim --version)
 - Error logs from ~/.ros/log/
 
-###Mobile and Serial Robots - I PAO 2025**
+### Mobile and Serial Robots - I PAO 2025
 ***Thank you and enjoy your simulation from our dedicated team!***
