@@ -7,7 +7,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     return LaunchDescription([
-        # Data logger (después de que los robots estén activos)
+        # Data logger
         TimerAction(
             period=3.0,
             actions=[
