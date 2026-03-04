@@ -62,7 +62,7 @@ mkdir -p ~/swarm_project/src
 cd ~/swarm_project/src
 
 # Clone repository
-git clone https://github.com/your-username/swarm_project.git .
+git clone https://github.com/EGRivas/swarm_project.git .
 ```
 2. Install Dependencies
 ```bash
